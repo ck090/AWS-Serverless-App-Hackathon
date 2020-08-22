@@ -79,6 +79,18 @@ export default {
     box-shadow: 0px 0px 20px 0px rgb(0, 0, 0);
 }
 
+@media all and (min-width: 100px) and (max-width: 500px) {
+    #c1 {
+        background: rgb(29, 48, 73);
+        color: white;
+        border-radius: 1rem;
+        margin: 0rem;
+        margin-right: 0rem;
+        margin-left: 0rem;
+        box-shadow: 0px 0px 20px 0px rgb(0, 0, 0);
+    }
+}
+
 #content {
     padding: 2rem;
     margin: 1rem;
