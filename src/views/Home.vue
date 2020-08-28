@@ -4,17 +4,31 @@
       <router-link to="/">Home</router-link><span id="title">HuMan United</span>
       <router-link to="/about">About</router-link>
     </div>
-    <Cards msg="N Chandra Kanth"/>
+    <div id="introText">
+        <h1>Welcome back</h1>
+        <h1 id='name'>{{ msg }}</h1>
+    </div>
+    <div id='mainPage'>
+      <Req/>
+      <Cards/>
+    </div>
   </div>
 </template>
 
 <script>
 import Cards from '@/components/Cards.vue'
+import Req from '@/components/Requests.vue'
 
 export default {
   name: 'Home',
   components: {
-    Cards
+    Cards,
+    Req
+  }, 
+  data: function () {
+    return {
+      msg: 'N Chandra Kanth'
+    }
   }
 }
 </script>
@@ -29,6 +43,21 @@ body {
   padding-right: 2rem;
   padding-left: 2rem;
   animation-delay: 2s;
+}
+
+#mainPage {
+  display: flex;
+  flex-direction: row;
+}
+
+#introText {
+  display: flex;
+  padding-bottom: 0.3rem;
+}
+
+#name {
+  color: #42b983;
+  margin-left: 1rem;
 }
 
 .home {
@@ -49,6 +78,21 @@ body {
 #title {
   font-size: 1.5rem;
   color: rgb(89, 199, 199);
+}
+
+@media all and (min-width: 100px) and (max-width: 700px) {
+    #mainPage {
+      display: block;
+    }
+
+    #introText {
+      display: block;
+    }
+
+    #name {
+      margin: 0rem;
+      padding-bottom: 1.7rem;
+    }
 }
 
 #nav a {

@@ -1,12 +1,10 @@
 <template>
   <div class="hello">
-    <h1>Welcome back {{ msg }}</h1>
-    <h2>Your Feed:</h2>
+    <h2 id='feed'>Your Feed 👇🏼</h2>
     <div id="cards">
         <div id="c1">
             <div id="content">
                 <strong>Vincent Lombadri</strong>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
             </div>
         </div>
         <div id="c1">
@@ -55,10 +53,7 @@
 
 <script>
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+  name: 'HelloWorld'
 }
 </script>
 
@@ -69,13 +64,17 @@ export default {
     flex-direction: row;
 }
 
+#feed {
+    margin-left: 4rem;
+    margin-bottom: 1.25rem;
+}
+
 #c1 {
     background: rgb(29, 48, 73);
     color: white;
     border-radius: 1rem;
     margin: 1rem;
-    margin-right: 5rem;
-    margin-left: 5rem;
+    margin-left: 4rem;
     box-shadow: 0px 0px 20px 0px rgb(0, 0, 0);
 }
 
@@ -85,9 +84,13 @@ export default {
         color: white;
         border-radius: 1rem;
         margin: 0rem;
-        margin-right: 0rem;
         margin-left: 0rem;
         box-shadow: 0px 0px 20px 0px rgb(0, 0, 0);
+    }
+
+    #feed {
+        margin: 0rem;
+        padding-top: 1.7rem;
     }
 }
 
