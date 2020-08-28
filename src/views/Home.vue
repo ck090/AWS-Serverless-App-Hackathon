@@ -52,7 +52,7 @@ body {
 
 #introText {
   display: flex;
-  padding-bottom: 0.3rem;
+  padding-bottom: 0.4rem;
 }
 
 #name {

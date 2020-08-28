@@ -2,9 +2,9 @@
   <div class="hello">
     <h2>Raise a new request:</h2>
     <div id="raise">
-        <button type="button" class="my-2 btn btn-primary">Help one another 🤗</button>
-        <button type="button" class="my-2 btn btn-primary">Help community 🏙</button>
-        <button type="button" class="my-2 btn btn-primary">Help for common problem 🧜🏻‍♂️</button>
+        <button type="button" class="my-2 mr-2 btn btn-primary">Help one another 🤗</button>
+        <button type="button" class="my-2 mr-2 btn btn-primary">Help community 🏙</button>
+        <button type="button" class="my-2 mr-2 btn btn-primary">Help for common problem 🧜🏻‍♂️</button>
     </div>
     <h2>Your Samaritan points</h2>
     <div id="points">
