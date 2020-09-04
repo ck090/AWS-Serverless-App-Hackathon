@@ -17,6 +17,8 @@
     "@vue/cli-plugin-pwa": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",
     "@vue/cli-service": "~4.5.0",
+    "axios": "^0.18.0",
+    "vue-cli-plugin-axios": "0.0.4",
     "vue-template-compiler": "^2.6.11"
   },
   "browserslist": [

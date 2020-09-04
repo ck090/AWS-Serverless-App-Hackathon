@@ -2,49 +2,18 @@
   <div class="hello">
     <h2 id='feed'>Your Feed 👇🏼</h2>
     <div id="cards">
-        <div id="c1">
+        <div id="c1" v-for="(vals, index) in body" :key="vals">
             <div id="content">
-                <strong>Vincent Lombadri</strong>
-            </div>
-        </div>
-        <div id="c1">
-            <div id="content">
-                <strong>Vincent Lombadri</strong>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </div>
-        </div>
-        <div id="c1">
-            <div id="content">
-                <strong>Vincent Lombadri</strong>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </div>
-        </div>
-        <div id="c1">
-            <div id="content">
-                <strong>Vincent Lombadri</strong>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </div>
-        </div>
-        <div id="c1">
-            <div id="content">
-                <strong>Vincent Lombadri</strong>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </div>
-        </div>
-        <div id="c1">
-            <div id="content">
-                <strong>Vincent Lombadri</strong>
-            </div>
-        </div>
-        <div id="c1">
-            <div id="content">
-                <strong>Vincent Lombadri</strong>
-            </div>
-        </div>
-        <div id="c1">
-            <div id="content">
-                <strong>Vincent Lombadri</strong>
-                using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).
+                <div id="userInfo">
+                    <span class="material-icons">person_outline</span>
+                    {{ user[index] }}
+                </div><br>
+                <div id="locaInfo">
+                    <span class="material-icons">near_me</span>
+                    <a href="https://www.google.com/maps/place/">{{ location[index] }}</a>
+                </div>
+                <h3> {{ title[index] }} </h3>
+                {{ vals }}
             </div>
         </div>
     </div>
@@ -52,8 +21,33 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-  name: 'HelloWorld'
+  name: 'HelloWorld',
+  data () {
+    return {
+        body: [],
+        title: [],
+        location: [],
+        name: 0,
+        privacy: [],
+        user: []
+    }
+  },
+  mounted () {
+    axios.get('https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/issues/')
+    .then(res => {
+        for(var i = 0; i < res.data.length; i++) {
+            // console.log(res.data[i].body, this.body)
+            this.body.push(res.data[i].body)
+            this.title.push(res.data[i].title)
+            this.location.push(res.data[i].location)
+            this.privacy.push(res.data[i].private)
+            this.user.push(res.data[i].user)
+        }
+    })
+  },
 }
 </script>
 
@@ -65,7 +59,7 @@ export default {
 }
 
 #feed {
-    margin-left: 4rem;
+    margin-left: 2rem;
     margin-bottom: 1.25rem;
 }
 
@@ -73,9 +67,21 @@ export default {
     background: rgb(29, 48, 73);
     color: white;
     border-radius: 1rem;
-    margin: 1rem;
-    margin-left: 4rem;
+    margin: 0.7rem;
+    margin-left: 2rem;
     box-shadow: 0px 0px 20px 0px rgb(0, 0, 0);
+}
+
+#userInfo {
+    display: inline-flex;
+    justify-content: center;
+    color: rgb(199, 209, 240);
+}
+
+#locaInfo {
+    display: inline-flex;
+    justify-content: center;
+    padding-bottom: .4rem;
 }
 
 @media all and (min-width: 100px) and (max-width: 500px) {
