@@ -8,7 +8,7 @@
     </div>
     <h2>Your Samaritan points</h2>
     <div id="points">
-        <h1>⭐️ 5</h1>
+        <h1>⭐️ 10</h1>
     </div>
   </div>
 </template>

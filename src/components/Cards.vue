@@ -8,15 +8,20 @@
                     <strong v-if="privacy[index] == 1">Private</strong>
                 </div>
                 <div id="userInfo">
-                    <span class="material-icons">person_outline</span>
+                    <span class="material-icons-outlined">person_outline</span>
                     {{ user[index] }}
                 </div><br>
                 <div id="locaInfo">
-                    <span class="material-icons">near_me</span>
+                    <span class="material-icons-outlined">near_me</span>
                     <a href="https://www.google.com/maps/place/">{{ location[index] }}</a>
                 </div>
                 <h3> {{ title[index] }} </h3>
                 {{ vals }}
+                <div id="responses">
+                    <span class="material-icons-outlined">thumb_up</span>
+                    <span class="material-icons-outlined">insert_comment</span>
+                    <span class="material-icons-outlined">share</span>
+                </div>
             </div>
         </div>
     </div>
@@ -57,12 +62,12 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #cards {
-    display: flexbox;
+    display: flow-root;
     flex-direction: row;
 }
 
 #feed {
-    margin-left: 4rem;
+    margin-left: 2rem;
     margin-bottom: 1.25rem;
 }
 
@@ -71,7 +76,7 @@ export default {
     color: white;
     border-radius: 1rem;
     margin: 1rem;
-    margin-left: 4rem;
+    margin-left: 2rem;
     box-shadow: 0px 0px 20px 0px rgb(0, 0, 0);
 }
 
@@ -79,10 +84,15 @@ export default {
     color: rgb(189, 14, 14);
 }
 
+#responses {
+    display: flex;
+    justify-content: space-around;
+    padding: 1rem;
+}
+
 #userInfo {
     display: inline-flex;
     justify-content: center;
-    color: rgb(199, 209, 240);
 }
 
 #locaInfo {
