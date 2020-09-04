@@ -4,6 +4,9 @@
     <div id="cards">
         <div id="c1" v-for="(vals, index) in body" :key="vals">
             <div id="content">
+                <div id="privacyInfo">
+                    <strong v-if="privacy[index] == 1">Private</strong>
+                </div>
                 <div id="userInfo">
                     <span class="material-icons">person_outline</span>
                     {{ user[index] }}
@@ -59,7 +62,7 @@ export default {
 }
 
 #feed {
-    margin-left: 2rem;
+    margin-left: 4rem;
     margin-bottom: 1.25rem;
 }
 
@@ -67,9 +70,13 @@ export default {
     background: rgb(29, 48, 73);
     color: white;
     border-radius: 1rem;
-    margin: 0.7rem;
-    margin-left: 2rem;
+    margin: 1rem;
+    margin-left: 4rem;
     box-shadow: 0px 0px 20px 0px rgb(0, 0, 0);
+}
+
+#privacyInfo {
+    color: rgb(189, 14, 14);
 }
 
 #userInfo {
@@ -84,7 +91,7 @@ export default {
     padding-bottom: .4rem;
 }
 
-@media all and (min-width: 100px) and (max-width: 500px) {
+@media all and (min-width: 100px) and (max-width: 700px) {
     #c1 {
         background: rgb(29, 48, 73);
         color: white;
@@ -101,7 +108,7 @@ export default {
 }
 
 #content {
-    padding: 2rem;
+    padding: 1rem;
     margin: 1rem;
 }
 
