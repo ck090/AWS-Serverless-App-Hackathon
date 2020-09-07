@@ -8,6 +8,7 @@
       </div>
     </div>
     <div v-if="isLoggedIn === 0" id="loginItems">
+      <img src="../assets/login.svg" id="loginSVG" />
       <h3>Signin with Google to get started:</h3>
       <div id="loginButton"></div>
     </div>
@@ -82,7 +83,7 @@ body {
 }
 
 #loginItems {
-  padding-top: 10rem;
+  padding-top: 5;
   text-align: -webkit-center;
 }
 
@@ -95,6 +96,11 @@ body {
 #mainPage {
   display: flex;
   flex-direction: row;
+}
+
+#loginSVG {
+  width: 20rem;
+  height: 20rem;
 }
 
 .dropdown {
@@ -157,6 +163,11 @@ body {
     #name {
       margin: 0rem;
       padding-bottom: 1.7rem;
+    }
+
+    #loginSVG {
+      width: 15rem;
+      height: 15rem;
     }
 }
 
