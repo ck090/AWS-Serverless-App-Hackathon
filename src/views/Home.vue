@@ -2,13 +2,20 @@
   <div class="home">
     <div id="nav">
       <router-link to="/">Home</router-link><span id="title">HuMan United</span>
-      <router-link to="/about">About</router-link>
+      <div class="dropdown">
+        <img v-if="isLoggedIn === 1" v-bind:src="imgLink" id="userId" alt="User Image" />
+        <div class="dropdown-content"></div>
+      </div>
     </div>
-    <div id="introText">
+    <div v-if="isLoggedIn === 0" id="loginItems">
+      <h3>Signin with Google to get started:</h3>
+      <div id="loginButton"></div>
+    </div>
+    <div v-if="isLoggedIn === 1" id="introText">
         <h1>Welcome back</h1>
         <h1 id='name'>{{ msg }}</h1>
     </div>
-    <div id='mainPage'>
+    <div v-if="isLoggedIn === 1" id='mainPage'>
       <Req/>
       <Cards/>
     </div>
@@ -21,13 +28,42 @@ import Req from '@/components/Requests.vue'
 
 export default {
   name: 'Home',
+  mounted () {
+    window.gapi.load('auth2', () => {
+      window.gapi.auth2.init({
+        client_id: '978451124995-j5vtfrn75upp3fi1gvgcjtpi78hcjdh0.apps.googleusercontent.com'
+      }).then(() => {
+        const authInstance = window.gapi.auth2.getAuthInstance()
+        const isSigned = authInstance.isSignedIn.get()
+        if(isSigned === true) {
+          this.isLoggedIn = 1
+          this.msg = authInstance.currentUser.get().rt.tV
+          this.imgLink = authInstance.currentUser.get().rt.TJ
+          console.log(authInstance.currentUser.get(), this.imgLink)
+        }
+        console.log(isSigned)
+        authInstance.isSignedIn.listen(isSignedIn => {
+          this.isLoggedIn = 1
+        })
+      })
+    })
+    window.gapi.load('signin2', () => {
+      const params = {
+        width: 130,
+        height: 40
+      }
+      window.gapi.signin2.render('loginButton', params)
+    })
+  },
   components: {
     Cards,
     Req
-  }, 
+  },
   data: function () {
     return {
-      msg: 'N Chandra Kanth'
+      isLoggedIn: 0,
+      msg: 'N Chandra Kanth',
+      imgLink: ''
     }
   }
 }
@@ -45,9 +81,38 @@ body {
   animation-delay: 2s;
 }
 
+#loginItems {
+  padding-top: 10rem;
+  text-align: -webkit-center;
+}
+
+#userId {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+}
+
 #mainPage {
   display: flex;
   flex-direction: row;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
 }
 
 #introText {

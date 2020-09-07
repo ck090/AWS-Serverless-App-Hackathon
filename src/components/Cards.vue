@@ -82,7 +82,7 @@ export default {
 }
 
 #privacyInfo {
-    color: rgb(189, 14, 14);
+    color: rgb(201, 57, 57);
 }
 
 #responses {
