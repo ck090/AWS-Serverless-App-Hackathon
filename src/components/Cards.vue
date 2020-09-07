@@ -17,6 +17,7 @@
                 </div>
                 <h3> {{ title[index] }} </h3>
                 {{ vals }}
+                <hr>
                 <div id="responses">
                     <span class="material-icons-outlined">thumb_up</span>
                     <span class="material-icons-outlined">insert_comment</span>
@@ -87,7 +88,6 @@ export default {
 #responses {
     display: flex;
     justify-content: space-around;
-    padding: 1rem;
 }
 
 #userInfo {
