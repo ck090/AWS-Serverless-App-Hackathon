@@ -39,9 +39,9 @@ export default {
           this.isLoggedIn = 1
           this.msg = authInstance.currentUser.get().rt.tV
           this.imgLink = authInstance.currentUser.get().rt.TJ
-          console.log(authInstance.currentUser.get(), this.imgLink)
+          // console.log(authInstance.currentUser.get(), this.imgLink)
         }
-        console.log(isSigned)
+        // console.log(isSigned)
         authInstance.isSignedIn.listen(isSignedIn => {
           this.isLoggedIn = 1
         })
