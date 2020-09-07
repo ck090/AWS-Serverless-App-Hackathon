@@ -9,6 +9,10 @@
     <h2>Your Samaritan points</h2>
     <div id="points">
         <h1>⭐️ 10</h1>
+    </div><br>
+    <h2>Your SOS Call</h2>
+    <div id="points">
+        <h5>Click on this button to activate:</h5><h1>🆘</h1>
     </div>
   </div>
 </template>
