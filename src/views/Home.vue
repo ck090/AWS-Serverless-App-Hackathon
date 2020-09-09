@@ -40,7 +40,18 @@ export default {
           this.isLoggedIn = 1
           this.msg = authInstance.currentUser.get().rt.tV
           this.imgLink = authInstance.currentUser.get().rt.TJ
+          this.emailId = authInstance.currentUser.get().rt.$t
           // console.log(authInstance.currentUser.get(), this.imgLink)
+          const payload = {
+            name: this.msg,
+            email: this.emailId,
+            imageurl: this.imgLink
+          }
+          console.log(payload)
+          axios.post('https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/userlogin/', payload)
+          .then(res => {
+            console.log(res)
+          })
         }
         // console.log(isSigned)
         authInstance.isSignedIn.listen(isSignedIn => {
@@ -64,7 +75,8 @@ export default {
     return {
       isLoggedIn: 0,
       msg: 'N Chandra Kanth',
-      imgLink: ''
+      imgLink: '',
+      emailId: ''
     }
   }
 }
