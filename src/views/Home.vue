@@ -48,7 +48,11 @@ export default {
             imageurl: this.imgLink
           }
           console.log(payload)
-          axios.post('https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/userlogin/', payload)
+          axios.post('https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/userlogin/', payload, {
+            headers: {
+              'Content-Type': 'application-json'
+            }
+          })
           .then(res => {
             console.log(res)
           })
