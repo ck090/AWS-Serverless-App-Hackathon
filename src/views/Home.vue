@@ -55,7 +55,7 @@ export default {
           })
           .then(res => {
             // {"UserID":"8959bdc2-af64-4fa5-b9ec-1815d71adb83","SamaritanPoints":10}
-            console.log(res.UserId, res.SamaritanPoints)
+            console.log(res.data.UserId, res.data.SamaritanPoints)
           })
         }
         // console.log(isSigned)
@@ -79,7 +79,7 @@ export default {
   data: function () {
     return {
       isLoggedIn: 0,
-      msg: 'N Chandra Kanth',
+      msg: '',
       imgLink: '',
       emailId: ''
     }
