@@ -54,7 +54,8 @@ export default {
             }
           })
           .then(res => {
-            console.log(res)
+            // {"UserID":"8959bdc2-af64-4fa5-b9ec-1815d71adb83","SamaritanPoints":10}
+            console.log(res.UserId, res.SamaritanPoints)
           })
         }
         // console.log(isSigned)

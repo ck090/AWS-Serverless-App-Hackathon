@@ -73,12 +73,12 @@ export default {
 }
 
 #c1 {
-    background: rgb(29, 48, 73);
+    background: rgb(27 39 53);
     color: white;
     border-radius: 1rem;
     margin: 1rem;
     margin-left: 2rem;
-    box-shadow: 0px 0px 20px 0px rgb(0, 0, 0);
+    box-shadow: 0px 0px 20px 10px rgb(0, 0, 0);
 }
 
 #privacyInfo {
