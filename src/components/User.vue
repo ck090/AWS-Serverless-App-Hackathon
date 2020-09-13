@@ -15,7 +15,7 @@ export default {
   props: ['userId'],
   data () {
       return {
-          src: '',
+          src: 'https://lh3.googleusercontent.com/a-/AOh14GikJbNpXjZYZ87qqVvX5a1LlzGs8eftYeN0G_hO2g=s96-c',
           name: '',
           smPoints: 0,
           daysSinceJoined: 0,
@@ -24,8 +24,7 @@ export default {
       }
   },
   created () {
-      console.log(this.userId)
-      const url = 'https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/users/' + this.userId + '/'
+      const url = 'https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/users/' + sessionStorage.getItem('userID') + '/'
       console.log(url)
       axios.get(url).then(res => {
           this.src = res.data.url
