@@ -57,7 +57,9 @@ export default {
           })
           .then(res => {
             // {"UserID":"8959bdc2-af64-4fa5-b9ec-1815d71adb83","SamaritanPoints":10}
-            console.log(res.data.UserId, res.data.SamaritanPoints)
+            sessionStorage.setItem("userID", res.data.UserID)
+            sessionStorage.setItem("smpoint", res.data.SamaritanPoints)
+            console.log(res.data.UserID, res.data.SamaritanPoints)
           })
         }
         // console.log(isSigned)
