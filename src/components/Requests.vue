@@ -8,7 +8,7 @@
     </div>
     <h2>Your Samaritan points</h2>
     <div id="points">
-        <h1>⭐️ 10</h1>
+        <h1>⭐️ {{ smPoint }}</h1>
     </div><br>
     <h2>Your SOS Call</h2>
     <div id="points">
@@ -19,7 +19,15 @@
 
 <script>
 export default {
-  name: 'Requests'
+  name: 'Requests',
+  data () {
+      return {
+          smPoint: 0
+      }
+  },
+  mounted () {
+      this.smPoint = sessionStorage.getItem('smpoint')
+  }
 }
 </script>
 
