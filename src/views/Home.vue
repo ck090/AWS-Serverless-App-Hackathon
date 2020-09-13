@@ -14,11 +14,12 @@
     </div>
     <div v-if="isLoggedIn === 1" id="introText">
         <h1>Welcome back</h1>
-        <h1 id='name'>{{ msg }}</h1>
+        <h1 id='name' @click='userInfoClicked'>{{ msg }}</h1>
     </div>
     <div v-if="isLoggedIn === 1" id='mainPage'>
-      <Req/>
-      <Cards/>
+      <Req v-if="!userInfoPageLoad"/>
+      <Cards v-if="!userInfoPageLoad"/>
+      <UserPage v-if="userInfoPageLoad" v-bind:userId='userId'/>
     </div>
   </div>
 </template>
@@ -26,6 +27,7 @@
 <script>
 import Cards from '@/components/Cards.vue'
 import Req from '@/components/Requests.vue'
+import UserPage from '@/components/User.vue'
 
 export default {
   name: 'Home',
@@ -74,14 +76,23 @@ export default {
   },
   components: {
     Cards,
-    Req
+    Req,
+    UserPage
   },
   data: function () {
     return {
       isLoggedIn: 0,
-      msg: '',
+      msg: 'CK',
       imgLink: '',
-      emailId: ''
+      emailId: '',
+      userId: '12212',
+      userInfoPageLoad: false
+    }
+  },
+  methods: {
+    userInfoClicked() {
+      this.userInfoPageLoad = !this.userInfoPageLoad
+      console.log(this.userInfoPageLoad)
     }
   }
 }

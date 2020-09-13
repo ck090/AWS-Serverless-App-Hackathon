@@ -33,7 +33,7 @@
 import axios from 'axios'
 
 export default {
-  name: 'HelloWorld',
+  name: 'Cards',
   data () {
     return {
         body: [],
