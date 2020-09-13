@@ -2,10 +2,10 @@
   <div class="us">
     <div id="userCard">
         <img v-bind:src="src" alt="User Image" id="userImage"/>
-        <h1> UserName {{ userId }} </h1>
+        <h1> UserName {{ name }} </h1>
     </div>
-    <h4> Samaritan Points {{ points }} ⭐️ </h4>
-    <h4> Member since {{ dateJoined }} </h4>
+    <h4> Samaritan Points {{ smPoints }} ⭐️ </h4>
+    <h4> Member since {{ daysSinceJoined }} </h4>
   </div>
 </template>
 
@@ -15,8 +15,27 @@ export default {
   props: ['userId'],
   data () {
       return {
-          src: 'https://lh3.googleusercontent.com/a-/AOh14GikJbNpXjZYZ87qqVvX5a1LlzGs8eftYeN0G_hO2g=s96-c'
+          src: '',
+          name: '',
+          smPoints: 0,
+          daysSinceJoined: 0,
+          issues: [],
+          helps: []
       }
+  },
+  mounted () {
+      const url = 'https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/users/' + this.userId
+      axios.get(url).then(res => {
+          this.src = res.data.url
+          this.name = res.data.name
+          this.smPoints = res.data.samaritanpoints
+          this.issues = res.data.userissues
+          this.helps = res.data.userhelps
+          const jDate = res.data.joineddate
+          const currDate = new Date()
+          const diffinms = Math.abs(currDate - jDate)
+          this.daysSinceJoined = Math.ceil(diffinms / (1000 * 60 * 60 * 24)); 
+      })
   }
 }
 </script>

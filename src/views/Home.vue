@@ -84,10 +84,10 @@ export default {
   data: function () {
     return {
       isLoggedIn: 0,
-      msg: 'CK',
+      msg: '',
       imgLink: '',
       emailId: '',
-      userId: '12212',
+      userId: '',
       userInfoPageLoad: false
     }
   },
@@ -159,6 +159,11 @@ body {
 #name {
   color: #42b983;
   margin-left: 1rem;
+}
+
+#name:hover {
+    color: #58ffb4;
+    cursor: pointer;
 }
 
 .home {
