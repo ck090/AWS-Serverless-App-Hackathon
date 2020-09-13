@@ -5,7 +5,7 @@
         <h1> {{ name }} </h1>
     </div>
     <h4> Samaritan Points ⭐️ {{ smPoints }} ⭐️ </h4>
-    <h4> Member since {{ daysSinceJoined }} day 🏕 </h4>
+    <h4> Member since 🏕 {{ daysSinceJoined }} day </h4>
   </div>
 </template>
 
@@ -56,6 +56,14 @@ export default {
 
 
 @media all and (min-width: 100px) and (max-width: 700px) {
+    .us {
+        position: absolute;
+        top: 50%;
+        padding-top: 3rem;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        -webkit-animation: fadein 2s;
+    }
 
 }
 
