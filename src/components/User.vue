@@ -23,7 +23,8 @@ export default {
           helps: []
       }
   },
-  mounted () {
+  created () {
+      console.log(this.userId)
       const url = 'https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/users/' + this.userId + '/'
       console.log(url)
       axios.get(url).then(res => {
