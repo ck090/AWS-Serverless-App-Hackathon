@@ -104,7 +104,7 @@ export default {
 body {
   font-family: 'Alata';
   --bg-primary: #171725;
-  --fg-primary: #5e7c9b;
+  --fg-primary: #6094cb;
   background: var(--bg-primary);
   color: var(--fg-primary);
   padding-right: 2rem;

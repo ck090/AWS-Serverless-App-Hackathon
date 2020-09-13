@@ -5,7 +5,7 @@
         <h1> {{ name }} </h1>
     </div>
     <h4> Samaritan Points ⭐️ {{ smPoints }} ⭐️ </h4>
-    <h4> Member since {{ daysSinceJoined }} </h4>
+    <h4> Member since {{ daysSinceJoined }} day 🏕 </h4>
   </div>
 </template>
 
@@ -49,8 +49,8 @@ export default {
 }
 
 #userImage {
-  width: 10rem;
-  height: 10rem;
+  width: 8rem;
+  height: 8rem;
   border-radius: 50%;
 }
 
