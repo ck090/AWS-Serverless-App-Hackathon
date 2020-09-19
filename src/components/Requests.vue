@@ -15,7 +15,8 @@
         <h5>Click on this button to activate:</h5><h1>🆘</h1>
     </div>
     <div v-if="issueStart == 1" id="centered">
-        <span id="title">Post your Issue 😇</span><br>
+        <span id="title">Post your Issue 😇</span><span id="clearIt" class="material-icons-outlined" @click="close">clear</span><br>
+        <span id="Infoname">Username:</span><input type="text" v-model="issueUserName"/><br>
         <span id="Infoname">Title:</span><input type="text" v-model="issueTitle"/><br>
         <span id="Infoname">Content:</span><input type="text" v-model="issueBody"/><br>
         <span id="Infoname">Do you want to make this issue private:</span><br>
@@ -34,6 +35,7 @@ export default {
           smPoint: 0,
           issueStart: 0,
           issueTitle: '',
+          issueUserName: '',
           issueBody: '',
           issuePrivate: 0,
           issueLocation: ''
@@ -47,18 +49,21 @@ export default {
           console.log('post issue clicked')
           this.issueStart = 1
       },
+      close () {
+          this.issueStart = 0
+      },
       postIt () {
           const payload = {
               title: this.issueTitle,
               body: this.issueBody,
               private: this.issuePrivate,
-              user_name: '',
+              user_name: this.issueUserName,
               location: this.issueLocation,
               personal: 1,
               user_id: sessionStorage.getItem("userID")
           }
           console.log(payload)
-          axios.post('http://127.0.0.1:3000/issues', payload, {
+          axios.post('https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/issues', payload, {
             headers: {
               'Content-Type': 'application/json'
             }
@@ -90,6 +95,10 @@ export default {
     font-size: 0.8rem;
 }
 
+#clearIt {
+    cursor: pointer;
+}
+
 #Infoname2 {
     color: rgb(0, 88, 252);
     padding-left: 0.5rem;
@@ -98,14 +107,15 @@ export default {
 
 #centered {
     background:aliceblue;
-    font-size: 1.3rem;
+    font-size: 1rem;
     display: flex;
     flex-direction: column;
     border-radius: 5px;
-    padding-left: 10rem;
-    padding-right: 10rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
     padding-top: 3rem;
     padding-bottom: 3rem;
+    width: 30rem;
     position: fixed;
     top: 50%;
     left: 50%;
