@@ -32,6 +32,7 @@ import UserPage from '@/components/User.vue'
 export default {
   name: 'Home',
   mounted () {
+    // this.isLoggedIn = 1
     window.gapi.load('auth2', () => {
       window.gapi.auth2.init({
         client_id: '978451124995-j5vtfrn75upp3fi1gvgcjtpi78hcjdh0.apps.googleusercontent.com'
