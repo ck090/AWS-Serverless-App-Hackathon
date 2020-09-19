@@ -53,6 +53,9 @@ export default {
           this.issueStart = 0
       },
       postIt () {
+          if(this.issuePrivate === true) {
+              this.issuePrivate = 1
+          }
           const payload = {
               title: this.issueTitle,
               body: this.issueBody,
