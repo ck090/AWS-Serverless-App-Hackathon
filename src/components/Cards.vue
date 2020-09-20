@@ -42,6 +42,7 @@ export default {
         name: 0,
         privacy: [],
         user: [],
+        userid: [],
         id: []
     }
   },
@@ -54,7 +55,8 @@ export default {
             this.title.push(res.data[i].title)
             this.location.push(res.data[i].location)
             this.privacy.push(res.data[i].private)
-            this.user.push(res.data[i].user)
+            this.user.push(res.data[i].username)
+            this.userid.push(res.data[i].userid)
             this.id.push(res.data[i].id)
         }
     })
