@@ -2,9 +2,8 @@
   <div class="hello">
     <h2>Raise a new request:</h2>
     <div id="raise">
-        <button type="button" class="my-2 mr-2 btn btn-primary" @click="postIssue">Help one another 🤗</button>
-        <button type="button" class="my-2 mr-2 btn btn-primary">Help community 🏙</button>
-        <button type="button" class="my-2 mr-2 btn btn-primary">Help for common problem 🧜🏻‍♂️</button>
+        <button type="button" class="my-2 mr-2 btn btn-primary" @click="postIssue">Raise personal Issue🤗</button>
+        <button type="button" class="my-2 mr-2 btn btn-primary" @click="postIssueCommunity">Raise community issue 🏙</button>
     </div>
     <h2>Your Samaritan points</h2>
     <div id="points">
@@ -16,11 +15,17 @@
     </div>
     <div v-if="issueStart == 1" id="centered">
         <span id="title">Post your Issue 😇</span><span id="clearIt" class="material-icons-outlined" @click="close">clear</span><br>
-        <span id="Infoname">Username:</span><input type="text" v-model="issueUserName"/><br>
         <span id="Infoname">Title:</span><input type="text" v-model="issueTitle"/><br>
         <span id="Infoname">Content:</span><input type="text" v-model="issueBody"/><br>
         <span id="Infoname">Do you want to make this issue private:</span><br>
         <div><input id="one" value="1" v-model="issuePrivate" type="checkbox"><span id="Infoname2">Yes</span></div><br>
+        <span id="Infoname">Location:</span><input type="text" v-model="issueLocation"/><br>
+        <button type="button" class="my-2 mr-2 btn btn-primary" @click='postIt'>Submit</button>
+    </div>
+    <div v-if="issueStart2 == 1" id="centered">
+        <span id="title">Post your Issue 😇</span><span id="clearIt" class="material-icons-outlined" @click="close">clear</span><br>
+        <span id="Infoname">Title:</span><input type="text" v-model="issueTitle"/><br>
+        <span id="Infoname">Content:</span><input type="text" v-model="issueBody"/><br>
         <span id="Infoname">Location:</span><input type="text" v-model="issueLocation"/><br>
         <button type="button" class="my-2 mr-2 btn btn-primary" @click='postIt'>Submit</button>
     </div>
@@ -34,6 +39,7 @@ export default {
       return {
           smPoint: 0,
           issueStart: 0,
+          issueStart2: 0,
           issueTitle: '',
           issueUserName: '',
           issueBody: '',
@@ -49,6 +55,9 @@ export default {
           console.log('post issue clicked')
           this.issueStart = 1
       },
+      postIssueCommunity () {
+          this.issueStart2 = 1
+      },
       close () {
           this.issueStart = 0
       },
@@ -60,10 +69,10 @@ export default {
               title: this.issueTitle,
               body: this.issueBody,
               private: this.issuePrivate,
-              user_name: this.issueUserName,
+              username: sessionStorage.getItem("userName"),
               location: this.issueLocation,
-              personal: 1,
-              user_id: sessionStorage.getItem("userID")
+              personal: this.issuePrivate,
+              userid: sessionStorage.getItem("userID")
           }
           console.log(payload)
           axios.post('https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/issues', payload, {

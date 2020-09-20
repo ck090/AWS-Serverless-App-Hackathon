@@ -21,7 +21,7 @@
                 <div id="responses">
                     <span class="material-icons-outlined">thumb_up</span>
                     <span class="material-icons-outlined">insert_comment</span>
-                    <span class="material-icons-outlined">share</span>
+                    <span class="material-icons-outlined" @click="addHelp(index)">share</span>
                 </div>
             </div>
         </div>
@@ -41,7 +41,8 @@ export default {
         location: [],
         name: 0,
         privacy: [],
-        user: []
+        user: [],
+        id: []
     }
   },
   mounted () {
@@ -54,9 +55,29 @@ export default {
             this.location.push(res.data[i].location)
             this.privacy.push(res.data[i].private)
             this.user.push(res.data[i].user)
+            this.id.push(res.data[i].id)
         }
     })
   },
+  methods: {
+      addHelp (index) {
+          const userId = sessionStorage.getItem('userId')
+          const userName = sessionStorage.getItem('userName')
+          const url = 'https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/issues/' +  index + '/help/'
+          const payload = {
+              username: userName,
+              userid: userId
+          }
+          axios.post(url, payload, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(res => {
+              console.log('Posted')
+          })
+      }
+  }
 }
 </script>
 

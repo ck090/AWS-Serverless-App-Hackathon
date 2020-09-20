@@ -60,6 +60,7 @@ export default {
             // {"UserID":"8959bdc2-af64-4fa5-b9ec-1815d71adb83","SamaritanPoints":10}
             sessionStorage.setItem("userID", res.data.UserID)
             sessionStorage.setItem("smpoint", res.data.SamaritanPoints)
+            sessionStorage.setItem("userName", this.msg)
             console.log(res.data.UserID, res.data.SamaritanPoints)
           })
         }
