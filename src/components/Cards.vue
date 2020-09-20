@@ -21,7 +21,7 @@
                 <div id="responses">
                     <span class="material-icons-outlined">thumb_up</span>
                     <span class="material-icons-outlined">insert_comment</span>
-                    <span class="material-icons-outlined" @click="addHelp(index)" id="helperBtn">share</span>
+                    <span class="material-icons-outlined" @click="addHelp(index)" id="helperBtn">person_add</span>
                 </div>
             </div>
         </div>

@@ -171,6 +171,8 @@ body {
 .home {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 #nav {
