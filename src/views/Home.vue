@@ -19,6 +19,7 @@
     <div v-if="isLoggedIn === 1" id='mainPage'>
       <Req v-if="!userInfoPageLoad"/>
       <Cards v-if="!userInfoPageLoad"/>
+      <Posts v-if="!userInfoPageLoad"/>
       <UserPage v-if="userInfoPageLoad" v-bind:userId='userId'/>
     </div>
   </div>
@@ -28,6 +29,7 @@
 import Cards from '@/components/Cards.vue'
 import Req from '@/components/Requests.vue'
 import UserPage from '@/components/User.vue'
+import Posts from '@/components/Posts.vue'
 
 export default {
   name: 'Home',
@@ -81,7 +83,8 @@ export default {
   components: {
     Cards,
     Req,
-    UserPage
+    UserPage,
+    Posts
   },
   data: function () {
     return {
@@ -172,7 +175,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding-left: 2rem;
-  padding-right: 2rem;
+  padding-right: 1rem;
 }
 
 #nav {

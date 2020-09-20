@@ -92,6 +92,7 @@ export default {
 
 #feed {
     margin-left: 2rem;
+    margin-right: 1rem;
     margin-bottom: 1.25rem;
 }
 
@@ -101,6 +102,7 @@ export default {
     border-radius: 1rem;
     margin: 1rem;
     margin-left: 2rem;
+    margin-right: 1rem;
     box-shadow: 0px 0px 20px 10px rgb(0, 0, 0);
 }
 
