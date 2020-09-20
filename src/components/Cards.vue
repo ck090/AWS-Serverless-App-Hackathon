@@ -61,7 +61,7 @@ export default {
   },
   methods: {
       addHelp (index) {
-          const userId = sessionStorage.getItem('userId')
+          const userId = sessionStorage.getItem('userID')
           const userName = sessionStorage.getItem('userName')
           const url = 'https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/issues/' +  this.id[index] + '/help/'
           const payload = {
