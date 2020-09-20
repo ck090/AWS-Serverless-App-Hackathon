@@ -1,11 +1,11 @@
 <template>
   <div class="hello">
-    <h2 id='feed'>Your Post 👇🏼</h2>
+    <h2 id='feed'>Posts 👇🏼</h2>
     <div id="cards">
         <div id="c1" v-for="(vals, index) in title" :key="vals">
             <div id="content">
                 <h4> {{ title[index] }} </h4>
-                <h6> {{ time[index] }} </h6>
+                <h6 id="time"> {{ time[index] }} </h6>
                 <h5> {{ description[index] }} </h5>
             </div>
         </div>
@@ -50,6 +50,10 @@ export default {
     margin-left: 2rem;
     margin-right: 2rem;
     margin-bottom: 1.25rem;
+}
+
+#time {
+    color: aquamarine;
 }
 
 #c1 {
