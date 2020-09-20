@@ -21,7 +21,7 @@
                 <div id="responses">
                     <span class="material-icons-outlined">thumb_up</span>
                     <span class="material-icons-outlined">insert_comment</span>
-                    <span class="material-icons-outlined" @click="addHelp(index)">share</span>
+                    <span class="material-icons-outlined" @click="addHelp(index)" id="helperBtn">share</span>
                 </div>
             </div>
         </div>
@@ -63,12 +63,12 @@ export default {
       addHelp (index) {
           const userId = sessionStorage.getItem('userId')
           const userName = sessionStorage.getItem('userName')
-          const url = 'https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/issues/' +  index + '/help/'
+          const url = 'https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/issues/' +  this.id[index] + '/help/'
           const payload = {
               username: userName,
               userid: userId
           }
-          axios.post(url, payload, {
+          axios.put(url, payload, {
             headers: {
               'Content-Type': 'application/json'
             }
@@ -114,6 +114,15 @@ export default {
 #userInfo {
     display: inline-flex;
     justify-content: center;
+}
+
+#helperBtn {
+    cursor: pointer;
+}
+
+#helperBtn:hover {
+    color: blue;
+    cursor: pointer;
 }
 
 #locaInfo {
