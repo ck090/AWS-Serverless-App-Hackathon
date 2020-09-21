@@ -12,7 +12,7 @@
             <div id="content">
                 Issue Status {{ issues[index].statusmsg }}
             </div>
-            <h3> {{ issues[index].title }} </h3>
+            <span> {{ issues[index].title }} </span>
         </div>
     </div>
     <div v-if="helps" class="userhelps">
@@ -21,7 +21,7 @@
              <div id="content">
                 Issue Status {{ helps[index].statusmsg }}
             </div>
-            <h3> {{ helps[index].title }} </h3>
+            <span> {{ helps[index].title }} </span>
         </div>
     </div>
   </div>
