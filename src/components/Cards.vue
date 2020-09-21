@@ -27,17 +27,25 @@
                 </div>
                 <div id="responses">
                     <span class="material-icons-outlined">thumb_up</span>
-                    <span class="material-icons-outlined" id="commentsBtn" @click="showComments(index)" >insert_comment</span>
+                    <span class="material-icons-outlined" id="commentsBtn" @click="showComments()" >insert_comment</span>
                     <md-button class="md-raised md-accent" @click="addHelp(index)" id="helperBtn">HELP</md-button>
                 </div>
-                <div v-for="comment in issues.comments[index]" :key="comment">
-                    <div id="commentsDiv">
-                        <span>L</span>
-                        <span id="arrowTag">></span>
-                        <span id="uNameIssue">{{ comment.username }}</span><br>
+                <div v-if="issues.commentsShow == 1">
+                    <div id="addCommentTag">
+                        <span>Add a new comment: </span>
+                        <input v-model="commentNew" type="text" />
+                        <md-button class="md-raised md-accent" @click="addComment(index)" id="helperBtn">SUBMIT</md-button>
                     </div>
-                    <div id="commentsDiv2">
-                        <span id="uNameIssue2">{{ comment.comment }}</span>
+                    <hr>
+                    <div v-for="comment in issues.comments[index]" :key="comment">
+                        <div id="commentsDiv">
+                            <span>L</span>
+                            <span id="arrowTag">></span>
+                            <span id="uNameIssue">{{ comment.username }}</span><br>
+                        </div>
+                        <div id="commentsDiv2">
+                            <span id="uNameIssue2">{{ comment.comment }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -76,7 +84,9 @@ export default {
             userid: [],
             id: [],
             helpers: [],
-            comments: []
+            comments: [],
+            commentsShow: 0,
+            commentNew: ''
         },
         posts:{
             description: [],
@@ -117,6 +127,25 @@ export default {
       })
   },
   methods: {
+      addComment (index) {
+          const userId = sessionStorage.getItem('userID')
+          const userName = sessionStorage.getItem('userName')
+          const url = 'https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/issues/' +  this.issues.id[index] + '/comment/'
+          const payload = {
+              username: userName,
+              userid: userId,
+              comment: this.issues.commentNew
+          }
+          axios.put(url, payload, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+          .then(res => {
+                alert('Helper comment added for issue');
+          })
+      },
+
       addHelp (index) {
           const userId = sessionStorage.getItem('userID')
           const userName = sessionStorage.getItem('userName')
@@ -133,6 +162,11 @@ export default {
           .then(res => {
                 alert('Helper added for issue');
           })
+      },
+
+      showComments () {
+          console.log('show')
+          this.issues.commentsShow = 1
       }
   }
 }
@@ -141,6 +175,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+input {
+    border: none;
+    border-bottom: 0.1rem solid rgb(55, 240, 55);
+    background: rgb(27 39 53);
+    outline: none;
+    width: 40rem;
+    color:  rgb(163, 163, 163);
+}
+
 #cards {
     display: flow-root;
     flex-direction: row;
