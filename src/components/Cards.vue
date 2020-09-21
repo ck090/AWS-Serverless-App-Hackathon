@@ -33,7 +33,7 @@
                 <div v-if="issues.commentsShow == 1">
                     <div id="addCommentTag">
                         <span>Add a new comment: </span>
-                        <input v-model="commentNew" type="text" />
+                        <input v-model="issues.commentNew" type="text" />
                         <md-button class="md-raised md-accent" @click="addComment(index)" id="helperBtn">SUBMIT</md-button>
                     </div>
                     <hr>
@@ -144,6 +144,7 @@ export default {
           .then(res => {
                 alert('Helper comment added for issue');
           })
+          this.issues.commentNew = ''
       },
 
       addHelp (index) {
