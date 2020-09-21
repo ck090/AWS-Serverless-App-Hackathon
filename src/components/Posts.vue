@@ -82,10 +82,11 @@ export default {
 
 #helperBtn {
     cursor: pointer;
+    color: red;
 }
 
 #helperBtn:hover {
-    color: blue;
+    color: red;
     cursor: pointer;
 }
 
