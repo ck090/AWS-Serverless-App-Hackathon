@@ -22,6 +22,7 @@
                 Issue Status {{ helps[index].statusmsg }}
             </div>
             <span> {{ helps[index].title }} </span>
+            <hr>
         </div>
     </div>
   </div>
@@ -134,6 +135,10 @@ export default {
 #content {
     padding: 1rem;
     margin: 1rem;
+}
+
+span {
+    padding: 1rem;
 }
 
 
