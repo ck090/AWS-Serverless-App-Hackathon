@@ -108,6 +108,13 @@ export default {
     font-size: 0.8rem;
 }
 
+input {
+    border: none;
+    border-bottom: 0.1rem solid red;
+    background:aliceblue;
+    outline: none;
+}
+
 #clearIt {
     cursor: pointer;
 }

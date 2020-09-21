@@ -30,11 +30,22 @@
                     <span class="material-icons-outlined" id="commentsBtn" @click="showComments(index)" >insert_comment</span>
                     <md-button class="md-raised md-accent" @click="addHelp(index)" id="helperBtn">HELP</md-button>
                 </div>
+                <div v-for="comment in issues.comments[index]" :key="comment">
+                    <div id="commentsDiv">
+                        <span>L</span>
+                        <span id="arrowTag">></span>
+                        <span id="uNameIssue">{{ comment.username }}</span><br>
+                    </div>
+                    <div id="commentsDiv2">
+                        <span id="uNameIssue2">{{ comment.comment }}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="hello">
     <div id="cards">
+        <h2 id='feed2'>All Posts 👇🏼</h2>
         <div id="c1" v-for="(vals, index) in posts.title" :key="vals">
             <div id="content">
                 <h4> {{ posts.title[index] }} </h4>
@@ -55,23 +66,23 @@ export default {
   name: 'Cards',
   data () {
     return {
-    issues:{
-        body: [],
-        title: [],
-        location: [],
-        name: 0,
-        privacy: [],
-        user: [],
-        userid: [],
-        id: [],
-        helpers: [],
-        comments: []
-    },
-    posts:{
-        description: [],
-        title: [],
-        time: []
-    }}
+        issues:{
+            body: [],
+            title: [],
+            location: [],
+            name: 0,
+            privacy: [],
+            user: [],
+            userid: [],
+            id: [],
+            helpers: [],
+            comments: []
+        },
+        posts:{
+            description: [],
+            title: [],
+            time: []
+        }}
   },
   mounted () {
     axios.get('https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/issues/')
@@ -88,6 +99,7 @@ export default {
             this.issues.helpers.push(res.data[i].helpers)
             if (res.data[i].Comments != null){
                 this.issues.comments.push(res.data[i].Comments)
+                console.log(res.data[i].Comments)
             } else {
                 this.issues.comments.push([])
             }
@@ -140,6 +152,13 @@ export default {
     margin-bottom: 1.25rem;
 }
 
+#feed2 {
+    margin-left: 2rem;
+    margin-top: 3rem;
+    margin-right: 1rem;
+    margin-bottom: 1.5rem;
+}
+
 #c1 {
     background: rgb(27 39 53);
     color: white;
@@ -168,12 +187,23 @@ export default {
    cursor: pointer;
 }
 
+#commentsDiv {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    font-size: 1rem;
+}
+
+#commentsDiv2 {
+    font-size: 1rem;
+}
+
 #helperBtn {
     cursor: pointer;
 }
 
 #helperBtn:hover {
-    color: red;
+    color: rgb(0, 255, 21);
     cursor: pointer;
 }
 
@@ -201,6 +231,22 @@ export default {
 
 li {
     display: inline;
+}
+
+#uNameIssue {
+    color: rgb(77, 230, 110);
+    padding-top: 0.3rem;
+    padding-left: 1rem;
+}
+
+#arrowTag {
+    padding-top: 0.2rem;
+}
+
+#uNameIssue2 {
+    color: rgb(163, 163, 163);
+    padding-top: 0.2rem;
+    padding-left: 2rem;
 }
 
 #content {
