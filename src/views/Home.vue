@@ -19,7 +19,7 @@
     <div v-if="isLoggedIn === 1" id='mainPage'>
       <Req v-if="!userInfoPageLoad"/>
       <Cards v-if="!userInfoPageLoad"/>
-      <Posts v-if="!userInfoPageLoad"/>
+      <!--<Posts v-if="!userInfoPageLoad"/> -->
       <UserPage v-if="userInfoPageLoad" v-bind:userId='userId'/>
     </div>
   </div>
