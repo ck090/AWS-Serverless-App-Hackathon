@@ -6,6 +6,24 @@
     </div>
     <h4> Samaritan Points ⭐️ {{ smPoints }} ⭐️ </h4>
     <h4> Member since 🏕 {{ daysSinceJoined }} day </h4>
+    <div v-if="issues" class="userissues">
+        <h3 id='feed'> Issues Created </h3>
+        <div id="c1" v-for="(vals, index) in issues" :key="vals"> 
+            <div id="content">
+                Issue Status {{ issues[index].statusmsg }}
+            </div>
+            <h3> {{ issues[index].title }} </h3>
+        </div>
+    </div>
+    <div v-if="helps" class="userhelps">
+        <h3 id='feed'> Issues Helped </h3>
+        <div id="c1" v-for="(vals, index) in helps" :key="vals">
+             <div id="content">
+                Issue Status {{ helps[index].statusmsg }}
+            </div>
+            <h3> {{ helps[index].title }} </h3>
+        </div>
+    </div>
   </div>
 </template>
 
@@ -52,6 +70,70 @@ export default {
   width: 8rem;
   height: 8rem;
   border-radius: 50%;
+}
+
+
+#cards {
+    display: flow-root;
+    flex-direction: row;
+}
+
+#feed {
+    margin-left: 2rem;
+    margin-right: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+#c1 {
+    background: rgb(27 39 53);
+    color: white;
+    border-radius: 1rem;
+    margin: 1rem;
+    margin-left: 2rem;
+    margin-right: 1rem;
+    box-shadow: 0px 0px 20px 10px rgb(0, 0, 0);
+}
+
+#privacyInfo {
+    color: rgb(201, 57, 57);
+}
+
+#responses {
+    display: flex;
+    justify-content: space-around;
+}
+
+#userInfo {
+    display: inline-flex;
+    justify-content: center;
+}
+
+#locaInfo {
+    display: inline-flex;
+    justify-content: center;
+    padding-bottom: .4rem;
+}
+
+@media all and (min-width: 100px) and (max-width: 700px) {
+    #c1 {
+        background: rgb(29, 48, 73);
+        color: white;
+        border-radius: 1rem;
+        margin: 0rem;
+        margin-left: 0rem;
+        box-shadow: 0px 0px 20px 0px rgb(0, 0, 0);
+    }
+
+    #feed {
+        margin: 0rem;
+        padding-top: 1.7rem;
+    }
+}
+
+
+#content {
+    padding: 1rem;
+    margin: 1rem;
 }
 
 
