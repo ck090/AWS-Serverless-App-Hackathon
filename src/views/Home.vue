@@ -19,6 +19,7 @@
     <div v-if="isLoggedIn === 1" id='mainPage'>
       <Req v-if="!userInfoPageLoad"/>
       <Cards v-if="!userInfoPageLoad"/>
+      <Posts v-if="!userInfoPageLoad"/>
       <UserPage v-if="userInfoPageLoad" v-bind:userId='userId'/>
     </div>
   </div>
@@ -28,60 +29,62 @@
 import Cards from '@/components/Cards.vue'
 import Req from '@/components/Requests.vue'
 import UserPage from '@/components/User.vue'
+import Posts from '@/components/Posts.vue'
 
 export default {
   name: 'Home',
   mounted () {
-    // this.isLoggedIn = 1
-    window.gapi.load('auth2', () => {
-      window.gapi.auth2.init({
-        client_id: '978451124995-j5vtfrn75upp3fi1gvgcjtpi78hcjdh0.apps.googleusercontent.com'
-      }).then(() => {
-        const authInstance = window.gapi.auth2.getAuthInstance()
-        const isSigned = authInstance.isSignedIn.get()
-        if(isSigned === true) {
-          this.isLoggedIn = 1
-          this.msg = authInstance.currentUser.get().rt.tV
-          this.imgLink = authInstance.currentUser.get().rt.TJ
-          this.emailId = authInstance.currentUser.get().rt.$t
-          // console.log(authInstance.currentUser.get(), this.imgLink)
-          const payload = {
-            name: this.msg,
-            email: this.emailId,
-            imageurl: this.imgLink
-          }
-          console.log(payload)
-          axios.post('https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/userlogin/', payload, {
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          })
-          .then(res => {
-            // {"UserID":"8959bdc2-af64-4fa5-b9ec-1815d71adb83","SamaritanPoints":10}
-            sessionStorage.setItem("userID", res.data.UserID)
-            sessionStorage.setItem("smpoint", res.data.SamaritanPoints)
-            sessionStorage.setItem("userName", this.msg)
-            console.log(res.data.UserID, res.data.SamaritanPoints)
-          })
-        }
-        // console.log(isSigned)
-        authInstance.isSignedIn.listen(isSignedIn => {
-          this.isLoggedIn = 1
-        })
-      })
-    })
-    window.gapi.load('signin2', () => {
-      const params = {
-        width: 130,
-        height: 40
-      }
-      window.gapi.signin2.render('loginButton', params)
-    })
+    this.isLoggedIn = 1
+    // window.gapi.load('auth2', () => {
+    //   window.gapi.auth2.init({
+    //     client_id: '978451124995-j5vtfrn75upp3fi1gvgcjtpi78hcjdh0.apps.googleusercontent.com'
+    //   }).then(() => {
+    //     const authInstance = window.gapi.auth2.getAuthInstance()
+    //     const isSigned = authInstance.isSignedIn.get()
+    //     if(isSigned === true) {
+    //       this.isLoggedIn = 1
+    //       this.msg = authInstance.currentUser.get().rt.tV
+    //       this.imgLink = authInstance.currentUser.get().rt.TJ
+    //       this.emailId = authInstance.currentUser.get().rt.$t
+    //       // console.log(authInstance.currentUser.get(), this.imgLink)
+    //       const payload = {
+    //         name: this.msg,
+    //         email: this.emailId,
+    //         imageurl: this.imgLink
+    //       }
+    //       console.log(payload)
+    //       axios.post('https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/userlogin/', payload, {
+    //         headers: {
+    //           'Content-Type': 'application/json'
+    //         }
+    //       })
+    //       .then(res => {
+    //         // {"UserID":"8959bdc2-af64-4fa5-b9ec-1815d71adb83","SamaritanPoints":10}
+    //         sessionStorage.setItem("userID", res.data.UserID)
+    //         sessionStorage.setItem("smpoint", res.data.SamaritanPoints)
+    //         sessionStorage.setItem("userName", this.msg)
+    //         console.log(res.data.UserID, res.data.SamaritanPoints)
+    //       })
+    //     }
+    //     // console.log(isSigned)
+    //     authInstance.isSignedIn.listen(isSignedIn => {
+    //       this.isLoggedIn = 1
+    //     })
+    //   })
+    // })
+    // window.gapi.load('signin2', () => {
+    //   const params = {
+    //     width: 130,
+    //     height: 40
+    //   }
+    //   window.gapi.signin2.render('loginButton', params)
+    // })
   },
   components: {
     Cards,
     Req,
-    UserPage
+    UserPage,
+    Posts
   },
   data: function () {
     return {
@@ -128,6 +131,7 @@ body {
 #mainPage {
   display: flex;
   flex-direction: row;
+  justify-content: flex-start;
 }
 
 #loginSVG {
@@ -171,6 +175,8 @@ body {
 .home {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  padding-left: 2rem;
+  padding-right: 1rem;
 }
 
 #nav {

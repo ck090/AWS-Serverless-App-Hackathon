@@ -60,6 +60,7 @@ export default {
       },
       close () {
           this.issueStart = 0
+          this.issueStart2 = 0
       },
       postIt () {
           if(this.issuePrivate === true) {

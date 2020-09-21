@@ -21,7 +21,7 @@
                 <div id="responses">
                     <span class="material-icons-outlined">thumb_up</span>
                     <span class="material-icons-outlined">insert_comment</span>
-                    <span class="material-icons-outlined" @click="addHelp(index)">share</span>
+                    <span class="material-icons-outlined" @click="addHelp(index)" id="helperBtn">person_add</span>
                 </div>
             </div>
         </div>
@@ -63,14 +63,14 @@ export default {
   },
   methods: {
       addHelp (index) {
-          const userId = sessionStorage.getItem('userId')
+          const userId = sessionStorage.getItem('userID')
           const userName = sessionStorage.getItem('userName')
-          const url = 'https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/issues/' +  index + '/help/'
+          const url = 'https://8b5j1hstle.execute-api.ap-south-1.amazonaws.com/Prod/issues/' +  this.id[index] + '/help/'
           const payload = {
               username: userName,
               userid: userId
           }
-          axios.post(url, payload, {
+          axios.put(url, payload, {
             headers: {
               'Content-Type': 'application/json'
             }
@@ -92,6 +92,7 @@ export default {
 
 #feed {
     margin-left: 2rem;
+    margin-right: 1rem;
     margin-bottom: 1.25rem;
 }
 
@@ -101,6 +102,7 @@ export default {
     border-radius: 1rem;
     margin: 1rem;
     margin-left: 2rem;
+    margin-right: 1rem;
     box-shadow: 0px 0px 20px 10px rgb(0, 0, 0);
 }
 
@@ -116,6 +118,15 @@ export default {
 #userInfo {
     display: inline-flex;
     justify-content: center;
+}
+
+#helperBtn {
+    cursor: pointer;
+}
+
+#helperBtn:hover {
+    color: blue;
+    cursor: pointer;
 }
 
 #locaInfo {
