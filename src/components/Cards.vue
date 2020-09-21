@@ -30,11 +30,12 @@
                     <span class="material-icons-outlined" id="commentsBtn" @click="showComments()" >insert_comment</span>
                     <md-button class="md-raised md-accent" @click="addHelp(index)" id="helperBtn">HELP</md-button>
                 </div>
+                <hr>
                 <div v-if="issues.commentsShow == 1">
                     <div id="addCommentTag">
                         <span>Add a new comment: </span>
                         <input v-model="issues.commentNew" type="text" />
-                        <md-button class="md-raised md-accent" @click="addComment(index)" id="helperBtn">SUBMIT</md-button>
+                        <md-button class="md-raised md-accent" @click="addComment(index)" id="helperBtn2">SUBMIT</md-button>
                     </div>
                     <hr>
                     <div v-for="comment in issues.comments[index]" :key="comment">
@@ -247,6 +248,16 @@ input {
 }
 
 #helperBtn:hover {
+    color: rgb(0, 255, 21);
+    cursor: pointer;
+}
+
+#helperBtn2 {
+    padding-left: 0.2rem;
+    cursor: pointer;
+}
+
+#helperBtn2:hover {
     color: rgb(0, 255, 21);
     cursor: pointer;
 }
